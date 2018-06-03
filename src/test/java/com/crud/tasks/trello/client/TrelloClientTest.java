@@ -105,7 +105,7 @@ public class TrelloClientTest {
         URI uri = new URI("http://test.com/members/lucynablu/boards?key=test&token=test&fields=name,id&lists=all");
 
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
-        
+
         //When
         List<TrelloBoardDto> emptyBoard = trelloClient.getTrelloBoards();
 
