@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'java-library-distribution'
-apply plugin: 'war'
+//apply plugin: 'war'
 
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
@@ -31,11 +31,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
-    runtime('mysql:mysql-connector-java')
-    // postgre while on Heroku
+    //runtime('mysql:mysql-connector-java')
+    compile('org.potgresql:postgresql')
     compile('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    //providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     compile('io.springfox:springfox-swagger2:2.7.0')
     compile('io.springfox:springfox-swagger-ui:2.7.0')
     compile('org.springframework.boot:spring-boot-starter-mail:2.0.2.RELEASE')
