@@ -1,6 +1,5 @@
 package com.crud.tasks.service;
 
-import com.crud.tasks.domain.Mail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+
+import com.crud.tasks.domain.Mail;
+import com.crud.tasks.scheduler.EmailScheduler;
 
 @Service
 public class SimpleEmailService {
@@ -25,8 +27,8 @@ public class SimpleEmailService {
         LOGGER.info("Starting e-mail preparation");
 
         try {
-            //SimpleMailMessage mailMessage = createMailMessage(mail);
-            //javaMailSender.send(mailMessage);
+            // SimpleMailMessage mailMessage = createMailMessage(mail);
+            // javaMailSender.send(mailMessage);
             javaMailSender.send(createMimeMessage(mail));
             LOGGER.info("E-mail sent");
         } catch (MailException e) {
@@ -39,8 +41,14 @@ public class SimpleEmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(mailCreatorService.buildTrelloCardEmail
-                    (mail.getMessage()), true);
+            if(mail.getSubject().equals(TrelloService.SUBJECT)) {
+                messageHelper.setText(mailCreatorService.buildTrelloCardEmail
+                        (mail.getMessage()), true);
+            } else if (mail.getSubject().equals(EmailScheduler.SUBJECT)) {
+                messageHelper.setText(mailCreatorService.buildTaskAmountEmail(mail.getMessage()), true);
+            } else {
+                messageHelper.setText(mail.getMessage(), false);
+            }
         };
     }
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmailScheduler {
-    private static final String SUBJECT = "Tasks: Once a day e-mail";
+    public static final String SUBJECT = "Tasks: Once a day e-mail";
     private String taskOrTasks;
 
     @Autowired
@@ -22,7 +22,7 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 0 17 * * *")
     public void sendInformationEmail() {
         long size = taskRepository.count();
 

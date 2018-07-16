@@ -15,7 +15,7 @@ import static java.util.Optional.ofNullable;
 
 @Service
 public class TrelloService {
-    private static final String SUBJECT = "Tasks: New Trello Card";
+    public static final String SUBJECT = "Tasks: New Trello Card";
 
     @Autowired
     private TrelloClient trelloClient;
