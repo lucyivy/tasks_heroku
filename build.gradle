@@ -33,11 +33,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.google.code.gson:gson:2.8.5')
 //comment on heroku
-    runtime('mysql:mysql-connector-java')
-    runtime('org.springframework.boot:spring-boot-starter-tomcat')
+    //runtime('mysql:mysql-connector-java')
+    //runtime('org.springframework.boot:spring-boot-starter-tomcat')
 
 //uncomment on Heroku
-    //compile('org.postgresql:postgresql')
+    compile('org.postgresql:postgresql')
 
 
     compile('org.projectlombok:lombok')
